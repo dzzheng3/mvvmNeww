@@ -3,11 +3,12 @@
     <data>
         <variable name="person" type="com.example.nzheng2.myapplication.room.Person"/>
     </data>
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
@@ -21,9 +22,18 @@
                 app:layout_constraintTop_toTopOf="parent"/>
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="insert"
-                android:id="@+id/bt_insert"/>
+                android:id="@+id/bt_insert"
+                android:src="@drawable/ic_add_black_24dp"/>
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="remove"
                 android:id="@+id/bt_remove"/>
-    </android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray"
+                tools:listitem="@layout/recyclerview_item">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </layout>
