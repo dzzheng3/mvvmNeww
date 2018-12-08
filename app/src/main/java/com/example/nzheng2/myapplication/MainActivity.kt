@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -17,7 +18,13 @@ import com.example.nzheng2.myapplication.recyclerview.PersonListAdapter
 import com.example.nzheng2.myapplication.room.Person
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AFragment.OnFragmentInteractionListener,
+    BFragment.OnFragmentInteractionListener {
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     companion object {
         const val newPersonActivityRequestCode = 1
     }
@@ -57,10 +64,11 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         data?.let {
             var person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
-            viewModel.insert(person)}
+            viewModel.insert(person)
+        }
         if (requestCode == newPersonActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.let {
-                var  person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
+                var person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
                 viewModel.insert(person)
             }
         } else
