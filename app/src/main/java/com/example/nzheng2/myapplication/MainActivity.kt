@@ -8,6 +8,8 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Toast
 import com.example.nzheng2.myapplication.databinding.ActivityMainBinding
@@ -46,13 +48,19 @@ class MainActivity : AppCompatActivity() {
         bt_remove.setOnClickListener() {
             viewModel.removeAll()
         }
+        tv_link.setClickable(true);
+        tv_link.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_link.setText(Html.fromHtml("<a href='http://zheng.com'> zheng </a>"))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        data?.let {
+            var person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
+            viewModel.insert(person)}
         if (requestCode == newPersonActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.let {
-                var person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
+                var  person = Person(it.getStringExtra(NewPersonActivity.EXTRA_REPLY), "test")
                 viewModel.insert(person)
             }
         } else

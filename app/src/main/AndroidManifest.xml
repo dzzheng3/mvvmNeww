@@ -21,6 +21,21 @@
                 android:name=".NewPersonActivity"
                 android:label="@string/title_activity_new_person"
                 android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"
+                      android:host="zheng.com"
+                      android:pathPrefix="/"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                      android:host="zheng.com"/>
+            </intent-filter>
         </activity>
     </application>
 
